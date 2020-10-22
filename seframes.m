@@ -17,6 +17,6 @@ for k=1:frames
     if(rightB>N)
         rightB=N;
     end
-    ek(k) = log(sum(powy(leftB:rightB).^2));    % tinh nang luong cua frame[k] theo CT
+    ek(k) = log(sum(powy(leftB:rightB).^2))/log(10);    % tinh nang luong cua frame[k] theo CT
 end
 

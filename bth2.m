@@ -1,4 +1,7 @@
-[y1,F1] = audioread('TinHieuMau/lab_female.wav');
+filename='lab_female';
+
+[y1,F1] = audioread("TinHieuMau/"+filename+".wav");
+tbounds = readmatrix("bound-"+filename+".txt"); % time-based boundaries
 
 flen=10;    % frame length in milliseconds
 felms = flen*F1/1000;
@@ -10,8 +13,8 @@ efnormstd = seframes(ynormstd,F1);
 
 ymax=max(y1);
 ymin=min(y1);
-fbounds=F1*[0, 0.694, 1.224, 1.955, 2.475, 3.434, 3.845, 4.634, 5.144, 6.085, 6.454, 7.115, 7.815, 9.521];
-pbounds=ceil(fbounds/felms);
+fbounds=F1*tbounds;     % convert boundaries to F-based
+pbounds=ceil(fbounds/felms);    % convert boundaries to power-based
 
 emax=max(eframes);
 emin=min(eframes);
