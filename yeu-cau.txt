@@ -1,0 +1,29 @@
+- báo cáo:
+-- tối đa 5 trang a4
+-- có số liệu rõ, đủ: file .eps, .png
+-- lập luận + code
+-- deadline: chieu thu 4 tuần sau
+==
+- objectives:
+-- chia khung tín hiệu 10 ms -> tính các năng lượng ngắn hạn
+-- vẽ đồ thị năng lượng và đồ thị tín hiệu
+-- tìm biên chuẩn của tín hiệu tiếng nói và khoảng lặng; độ dài khoảng lặng >= 200ms mới được coi là khoảng lặng.
+-- Nén dải động bằng cách lấy log & Tìm ngưỡng năng lượng chuẩn hóa của mỗi năng lượng ngắn hạn
+x(norm) = (x-xmin)/(xmax-xmin)
+x(N(0,1))=(x-xtb)/(do lech chuan), x là tập hợp các log Ek
+--- xtb = sum(xi)/length(x),	 với x là các mẫu trong range
+--- độ lệnh chuẩn = sqrt(phương sai);
+phương sai = trung bình cộng (độ lệch giá trị của từng mẫu so với xtb)
+	 = sum((xtb - xi)^2)/N
+--- Dựa vào các bảng dữ liệu đã chuẩn hóa và các biên chuẩn, tìm ra ngưỡng năng lượng nút (threshold) để phát hiện tiếng nói/khoảng lặng cho mỗi phương pháp chuẩn hóa!
+-- Kết luận sai số giữa các biên chuẩn và biên tìm được bằng thuật toán
+
+
+* tìm sai số bằng công thức RMSE(x,y) = sqrt(sum(xi-yi)^2)/N)
+
+- Write matrix (array) to file: writematrix(`variable`, `filename`)
+- Tim do lech chuan: std(`array of xis`); theo dung cong thuc s=sqrt(sum((xi-xtb)^2)/(N-1))
+
+https://www.diendat.net/phuong-sai-variance-do-lech-chuan-standard-deviation/
+https://www.diendat.net/trung-binh-mean-trung-vi-median/
+https://vi.wikipedia.org/wiki/Ph%C3%A2n_ph%E1%BB%91i_chu%E1%BA%A9n
