@@ -9,7 +9,7 @@ flen = 10;                  % frame duration of 10 ms
 frames = ceil(alen/flen);   % so frame
 elms = flen*F/1000;         % so phan tu trong 1 frame
 
-ek=zeros(1,frames); % vecto `frames` so 0
+ek=zeros(frames,1); % vecto `frames` so 0
 
 for k=1:frames
     rightB = k*elms;
@@ -17,7 +17,6 @@ for k=1:frames
     if(rightB>N)
         rightB=N;
     end
-    subset=powy(leftB:rightB);
-    ek(k) = log(sum(subset.*subset));    % tinh nang luong cua frame[k] theo CT
+    ek(k) = log(sum(powy(leftB:rightB).^2));    % tinh nang luong cua frame[k] theo CT
 end
 
