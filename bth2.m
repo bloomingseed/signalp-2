@@ -19,49 +19,55 @@ pbounds=ceil(fbounds/felms);    % convert boundaries to power-based
 emax=max(eframes);
 emin=min(eframes);
 
-pivot=0.8;  % ng??ng n?ng l??ng chu?n làm m?c
+pivot=1.574;  % ng??ng n?ng l??ng chu?n làm m?c
 cond=20;    % frame
-b = svfilterstd(efnormstd,cond);  % tìm các ?i?m biên kho?ng l?ng-ti?ng nói
+b = svfilterstd(efnormstd,cond, 0.8);  % tìm các ?i?m biên kho?ng l?ng-ti?ng nói
+c=svfilterstd(efnorm,cond,1.574);
 % b=b*felms;  % ??i ??n v? thành th?i ?i?m l?y m?u
+tc=c*160;
 
 delta = rmse(b,pbounds);
 
-subplot(4,1,1)
+subplot(3,1,1)
 plot(1:length(y1),y1)
 for i=1:length(fbounds)
     line([fbounds(i), fbounds(i)],[max(y1),min(y1)],'Color','red','LineStyle','--')
 end
+for i=1:length(tc)
+    line([tc(i), tc(i)],[max(y1),min(y1)],'Color','black','LineStyle','--')
+end
 line([1,length(y1)],[pivot,pivot]);
 title("do thi giong noi "+filename)
 
-subplot(4,1,2)
-plot(1:length(eframes),eframes);
-title("do thi nang luong")
+% subplot(4,1,2)
+% plot(1:length(eframes),eframes);
+% title("do thi nang luong")
+% for i=1:length(pbounds)
+%     line([pbounds(i), pbounds(i)],[max(eframes),min(eframes)],'Color','red','LineStyle','--')
+% end
+% line([1,length(eframes)],[pivot,pivot]);
+
+subplot(3,1,2)
+plot(1:length(efnorm),efnorm);
+title("do thi nang luong chuan hoa")
 for i=1:length(pbounds)
-    line([pbounds(i), pbounds(i)],[max(eframes),min(eframes)],'Color','red','LineStyle','--')
+    line([pbounds(i), pbounds(i)],[max(efnorm),min(efnorm)],'Color','red','LineStyle','--')
 end
-line([1,length(eframes)],[pivot,pivot]);
+line([1,length(efnorm)],[pivot,pivot]);
 
 % subplot(4,1,3)
-% plot(1:length(efnorm),efnorm);
-% title("do thi nang luong chuan hoa")
+% plot(1:length(efnormstd),efnormstd);
+% title("do thi nang luong chuan hoa pp chuan tac")
 % for i=1:length(pbounds)
-%     line([pbounds(i), pbounds(i)],[max(efnorm),min(efnorm)],'Color','red','LineStyle','--')
+%     line([pbounds(i), pbounds(i)],[max(efnormstd),min(efnormstd)],'Color','red','LineStyle','--')
 % end
-% line([1,length(efnorm)],[pivot,pivot]);
-
-subplot(4,1,3)
-plot(1:length(efnormstd),efnormstd);
-title("do thi nang luong chuan hoa pp chuan tac")
-for i=1:length(pbounds)
-    line([pbounds(i), pbounds(i)],[max(efnormstd),min(efnormstd)],'Color','red','LineStyle','--')
+% line([1,length(efnormstd)],[pivot,pivot]);
+% 
+subplot(3,1,3)
+temp = log(efnorm)/log(10);
+plot(1:length(temp),temp);
+title("do thi nang luong chuan hoa [0;1]")
+for i=1:length(c)
+    line([c(i), c(i)],[max(temp),min(temp)],'Color','red','LineStyle','--')
 end
-line([1,length(efnormstd)],[pivot,pivot]);
-
-subplot(4,1,4)
-plot(1:length(efnormstd),efnormstd);
-title("do thi nang luong chuan hoa pp chuan tac")
-for i=1:length(b)
-    line([b(i), b(i)],[max(efnormstd),min(efnormstd)],'Color','red','LineStyle','--')
-end
-line([1,length(efnormstd)],[pivot,pivot]);
+line([1,length(efnorm)],[pivot,pivot]);

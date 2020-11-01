@@ -1,10 +1,10 @@
-function b = svfilterstd(senergy, cond)
+function b = svfilterstd(senergy, cond, threshold)
 % Tr? v? vector các ???ng biên ti?ng nói - kho?ng l?ng, trong ?ó
 %   senergy:    vector n?ng l??ng ng?n h?n trong m?i frame tín hi?u ??u vào, chu?n hóa
 %               thành phân ph?i chu?n t?c
 %   felms:      ?i?u ki?n l?c biên ?o, ??n v?: frame
 
-threshold = 0.8;    % ng??ng n?ng l??ng làm m?c
+% threshold = 0.8;    % ng??ng n?ng l??ng làm m?c
 L = length(senergy);% chi?u dài c?a vector n?ng l??ng ng?n h?n
 
 vb=[];  % l?u biên ?o và biên th?t
