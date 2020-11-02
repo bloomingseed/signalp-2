@@ -3,26 +3,21 @@ filename="lab_female";
 [y1,F1] = audioread("TinHieuMau/"+filename+".wav");
 tbounds = readmatrix("bound-"+filename+".txt"); % time-based boundaries
 
-flen=10;    % frame length in milliseconds
+flen=10;                        % frame length in milliseconds
 felms = flen*F1/1000;
-eframes = seframes(y1,F1);     % nang luong cua moi khung
+eframes = seframes(y1,F1, flen);     % nang luong cua moi khung
 %ynorm = datanormalize(y1);      % chuan hoa ve [0;1]
 %ynormstd = stdnormalize(y1);    % chuan hoa pp chuan tac
 %efnorm = seframes(ynorm,F1);    % nang luong cua moi khung tin hieu da chuan hoa
 efnormstd = stdnormalize(eframes);
 efnorm2 = datanormalize(eframes);
 
-ymax=max(y1);
-ymin=min(y1);
 fbounds=F1*tbounds;     % convert boundaries to F-based
 pbounds=ceil(fbounds/felms);    % convert boundaries to power-based
 
-emax=max(eframes);
-emin=min(eframes);
-
 pivot=0.55;  % ng??ng n?ng l??ng chu?n làm m?c
 pivotstd = 0.4;
-cond=20;    % frame
+cond=20;    % minimum length (frames) for a span to be silence span
 b = svfilterstd(efnormstd,cond, pivotstd);  % tìm các ?i?m biên kho?ng l?ng-ti?ng nói
 % c=svfilterstd(efnorm2,cond,pivot);
 fb = b*felms;

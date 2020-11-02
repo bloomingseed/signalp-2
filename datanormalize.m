@@ -1,5 +1,5 @@
 function [Y] = datanormalize(X)
-% Chuan hoa tin hieu X ve [0;1]
+% Normalize X to [0;1] value range
 xmax = max(X);   
 xmin = min(X);
 N=length(X);

@@ -1,7 +1,7 @@
 function [Y] = stdnormalize(X)
-% Chuan hoa tin hieu X su dung phan phoi chuan tac
-xtb = mean(X);  % gia tri trung binh cua X
-devi = std(X);
+% Normalize X to standard distribution
+xtb = mean(X); 
+devi = std(X);  % standard deviation
 Y=(X-xtb)/devi;
 
 end
