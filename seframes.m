@@ -19,6 +19,6 @@ for k=1:frames
     if(rightB>N)
         rightB=N;
     end
-    ek(k) = log(sum(y(leftB:rightB).^2))/log(10);    % tinh nang luong cua frame[k] theo CT
+    ek(k) = log(sum(y(leftB:rightB).^2))/log(10);    % take log base 10 of calculated short-time energy
 end
 
