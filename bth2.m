@@ -17,8 +17,10 @@ pbounds=ceil(fbounds/felms);    % convert boundaries to power-based
 pivot=0.55;     % threshold for [0;1] normalization
 pivotstd = 0.4; % threshold for standard distribution normalization
 cond=20;        % minimum length (frames) for a span to be silence span
-b = svfilter(efnormstd,cond, pivotstd);  % calculate boundaries
-c=svfilter(efnorm,cond,pivot);
+% b = svfilter(efnormstd,cond, pivotstd);  % calculate boundaries
+% c=svfilter(efnorm,cond,pivot);
+b=svfilterstd(y1,F1,pivotstd);
+c=svfilter(y1,F1,pivot);
 fb = b*felms;   % convert boundaries to F-based
 fc=c*felms;
 
