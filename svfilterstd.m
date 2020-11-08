@@ -9,15 +9,6 @@ E0 = 0.4;   % threshold for standard distribution normalization
 
 senergy = seframes(y,F,flen);       % find short-time energy of input signal
 nsenergy = stdnormalize(senergy);   % normalize short-time energy using standard distribution
-vb = svboundaries(nsenergy, E0); % find silence - voiced boundaries
+vb = svboundaries(nsenergy, E0);    % find silence - voiced boundaries
 b = vbfilter(vb, cond);             % filter out virtual boundaries
-
-% DEVELOPMENT ONLY
-% show boundaries before and after filtered out virtual boundaries
-figure
-subplot(2,1,1)
-
-
-
 end
-
